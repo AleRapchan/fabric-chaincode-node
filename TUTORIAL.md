@@ -10,7 +10,7 @@ An initial `package.json` is as follows;
 
 The dependencies of `fabric-contract-api` and `fabric-shim` will be required.
 
-```
+```JSON
 {
   "name": "chaincode",
   "description": "My first exciting chaincode implemented in node.js",
@@ -38,7 +38,7 @@ Remember to add in any additional business logic, and testing libraries needed
 
 Adding `fabric-shim` as a dependency, gives a command `fabric-chaincode-node` that is the script to run for `npm start`.
 
-```
+```JSON
   "scripts": {
     "start": "fabric-chaincode-node start",
     "test": "nyc mocha test",
@@ -67,7 +67,7 @@ Node states that module exports are defined in `index.js`
 
 In this example we have a single value that can be queried and updated. This has been split into to parts for demonstration purposes.
 
-```
+```JS
 // index.js
 'use strict';
 
@@ -84,7 +84,7 @@ This exports two classes that together form the Contract. There can be other cod
 
 As an example the `updatevalues` will look like this (with the function bodies remove for clarity)
 
-```
+```JS
 // updatevalues.js
 'use strict';
 
@@ -170,7 +170,7 @@ You can provide you own function to be executed in this case, the default is to 
 For example
 
 
-```
+```JS
 	/**
 	 * Sets a name so that the functions in this particular class can
 	 * be separated from others.
@@ -221,7 +221,7 @@ The context object contains
 
 You are at liberty to create a subclass of the Context to provide additional functions, or per-transaction context storage. For example
 
-```
+```JS
 	/**
 	 * Custom context for use within this contract
 	 */
@@ -232,7 +232,7 @@ You are at liberty to create a subclass of the Context to provide additional fun
 
 and the Context class itself is
 
-```
+```JS
 const { Context } = require('fabric-contract-api');
 
 class ScenarioContext extends Context{
@@ -277,7 +277,7 @@ Hyperledger Fabric's consensus algorithm permits the ability to use general purp
 - Functions should be away that they may read state, and write state. But they are producing a set of changes that will be applied to the state. The implication is that updates to the state
 may not be read back.
 
-```
+```JS
 let v1 = getState("key")
 v1=="hello" // is true
 putState("key","world")
